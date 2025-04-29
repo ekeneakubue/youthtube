@@ -1,0 +1,56 @@
+.sidebar{
+    background-color: #212020;
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    padding-left: 2%;
+    padding-top: 120px;
+    
+}
+.sidebar .side-link:hover span{
+    color: #fff;
+}
+.sidebar .side-link:hover p{
+    color: #fff;
+}
+.shortcut-links span{
+    width: 20px;
+    margin-right: 20px;    
+    color: red;
+}
+.side-link{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10%;
+    width: fit-content;
+    flex-wrap: wrap; 
+    cursor: pointer;
+    color: #9a9797;
+}
+.small-sidebar{
+    width: 5%;   
+    display: flex; 
+}
+.small-sidebar .shortcut-links{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.small-sidebar p{
+    display: none;
+}
+.side-link.active span{
+    color: #fff;
+}
+.side-link.active {
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+}
+.small-sidebar .side-link.active p {
+    display: none;
+}
+.small-sidebar .shortcut-links span{
+    margin-right: 0px; 
+}
