@@ -54,3 +54,9 @@
 .small-sidebar .shortcut-links span{
     margin-right: 0px; 
 }
+
+@media (max-width:900px){
+    .sidebar{
+        display: none;
+    }
+}

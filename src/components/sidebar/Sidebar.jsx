@@ -3,7 +3,8 @@ import './sidebar.css'
 import { ImHome } from "react-icons/im";
 import { IoNewspaper, IoGameController } from "react-icons/io5";
 import { FaBlog } from "react-icons/fa";
-import { MdSportsBasketball, MdOutlineLiveTv  } from "react-icons/md";
+import { MdSportsBasketball, MdOutlineLiveTv, MdOutlineBiotech  } from "react-icons/md";
+import { IoCarSportSharp, IoShapes } from "react-icons/io5";
 import { GiMusicalNotes } from "react-icons/gi";
 
 export const Sidebar = ({sidebar, category, setCategory}) => {
@@ -20,13 +21,13 @@ export const Sidebar = ({sidebar, category, setCategory}) => {
                 <span><MdOutlineLiveTv /></span><p>Entertainments</p>                
             </div>
             <div className={`side-link ${category === 23 ? "active":""}`} onClick={()=>setCategory(23)}>
-                <span><MdOutlineLiveTv /></span><p>Comedy</p>                
+                <span><IoShapes /></span><p>Comedy</p>                
             </div>
             <div className={`side-link ${category === 2 ? "active":""}`} onClick={()=>setCategory(2)}>
-                <span><MdOutlineLiveTv /></span><p>Autos & Vehicles</p>                
+                <span><IoCarSportSharp /></span><p>Autos & Vehicles</p>                
             </div>  
             <div className={`side-link ${category === 28 ? "active":""}`} onClick={()=>setCategory(28)}>
-                <span><MdOutlineLiveTv /></span><p>Technology</p>                
+                <span><MdOutlineBiotech /></span><p>Technology</p>                
             </div>
             <div className={`side-link ${category === 10 ? "active":""}`} onClick={()=>setCategory(10)}>
                 <span><GiMusicalNotes /></span><p>Music</p>                

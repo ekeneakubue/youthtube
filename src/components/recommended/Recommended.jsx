@@ -1,81 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './recommended.css'
-import tombnail1 from '../../assets/tombnail1.jpg';
-import tombnail2 from '../../assets/tombnail2.jpeg';
-import tombnail3 from '../../assets/tombnail3.jpeg';
-import tombnail4 from '../../assets/tombnail4.jpeg';
-import tombnail5 from '../../assets/tombnail5.jpeg';
-import tombnail6 from '../../assets/tombnail6.jpeg';
-import tombnail7 from '../../assets/tombnail7.jpeg';
-import tombnail8 from '../../assets/tombnail8.jpeg';
+import { API_KEY, value_converter } from '../../data';
+import { Link } from 'react-router-dom';
 
-export const Recommended = () => {
+export const Recommended = ({categoryId}) => {
+  
+  const [apiData, setApiData] = useState([]);
+
+  const fetchData = async () =>{
+
+    const relatedVideo_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=30&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
+    await fetch(relatedVideo_url).then(res=>res.json()).then(data=>setApiData(data.items));
+  }
+
+  useEffect(()=>{
+    fetchData();
+  }, [])
+
   return (
     <div className='recommended'>
-      <div className="side-video-list">
-        <img src={tombnail1} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail2} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail3} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail4} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail5} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail6} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail7} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
-      <div className="side-video-list">
-        <img src={tombnail8} alt="" />
-        <div className="vid-info">
-          <h4>Investor Ends Up in the Barracks  </h4>
-          <p>YouthTube</p>
-          <p>199k Views</p>
-        </div>
-      </div>
+      {apiData.map((item,index)=>{
+        return(
+          <Link to={`/video/${item.snippet.categoryId}/${item.id}`} key={index} className="side-video-list">
+            <img src={item.snippet.thumbnails.medium.url} alt="" />
+            <div className="vid-info">
+              <h4>{item.snippet.title}</h4>
+              <p>{item.snippet.channelTitle}</p>
+              <p>{value_converter(item.statistics.viewCount)} Views</p>
+            </div>
+          </Link>
+        )
+      })}      
     </div>
   )
 }
